@@ -10,6 +10,7 @@
     <div id="colorBox">
         <span id="numberDisplay"></span>
     </div>
+
     <div>
         <label for="interval">간격 (초):</label>
         <input type="number" id="interval" min="1" value="1">
@@ -19,6 +20,18 @@
         <input type="number" id="times" min="1" value="10">
     </div>
     <button onclick="startSequence()">시작</button>
+
+    <div id="colorDescriptions">
+        <h3>색깔별 숫자 설명:</h3>
+        <ul>
+            <li><span style="color:#FF5733;">■</span> 빨간색 - 1</li>
+            <li><span style="color:#33FF57;">■</span> 초록색 - 2</li>
+            <li><span style="color:#3357FF;">■</span> 파란색 - 3</li>
+            <li><span style="color:#FFFF33;">■</span> 노란색 - 4</li>
+            <li><span style="color:#FF33FF;">■</span> 보라색 - 5</li>
+            <li><span style="color:#33FFFF;">■</span> 청록색 - 6</li>
+        </ul>
+    </div>
 
     <script src="script.js"></script>
 </body>
