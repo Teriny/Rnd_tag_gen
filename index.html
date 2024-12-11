@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Color Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    #colorDisplay {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+
+    input {
+      margin: 5px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Color Generator</h1>
+  <div>
+    <label for="interval">간격 (초):</label>
+    <input type="number" id="interval" min="1" value="1">
+  </div>
+  <div>
+    <label for="count">횟수:</label>
+    <input type="number" id="count" min="1" value="5">
+  </div>
+  <button id="startButton">시작</button>
+  <div id="colorDisplay"></div>
+
+  <script>
+    const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple']; // 색상 배열
+    let intervalId; // 타이머 ID
+    let currentCount = 0;
+
+    document.getElementById('startButton').addEventListener('click', () => {
+      // 입력값 가져오기
+      const interval = parseFloat(document.getElementById('interval').value) * 1000; // 밀리초로 변환
+      const count = parseInt(document.getElementById('count').value);
+
+      if (isNaN(interval) || isNaN(count) || interval <= 0 || count <= 0) {
+        alert('올바른 값을 입력하세요.');
+        return;
+      }
+
+      currentCount = 0;
+      clearInterval(intervalId); // 기존 타이머 초기화
+
+      // 색상 업데이트 함수
+      const updateColor = () => {
+        if (currentCount >= count) {
+          clearInterval(intervalId); // 타이머 종료
+          return;
+        }
+
+        const randomColor = colors[Math.floor(Math.random() * colors.length)]; // 랜덤 색상 선택
+        const colorDisplay = document.getElementById('colorDisplay');
+        colorDisplay.style.backgroundColor = randomColor; // 색상 변경
+        currentCount++;
+      };
+
+      // 타이머 시작
+      intervalId = setInterval(updateColor, interval);
+      updateColor(); // 첫 색상 표시
+    });
+  </script>
+</body>
+</html>
